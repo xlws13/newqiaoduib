@@ -209,44 +209,8 @@ elif nav.startswith("四"):
 # ========== 模块五 ==========
 elif nav.startswith("五"):
     st.header("五、文化内涵与象征意义")
-    st.subheader("文化影响力雷达图")
-
-    # ------------- 修复中文显示的雷达图代码 -------------
-    import matplotlib.pyplot as plt
-    import numpy as np
-
-    # 强制加载中文字体（彻底解决方框乱码）
-    plt.rcParams['font.family'] = ['WenQuanYi Micro Hei', 'SimHei', 'Microsoft YaHei', 'DejaVu Sans']
-    plt.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
-
-    radar_labels = ['民间传说', '教材/票面传播', '民族自豪感', '国际遗产认可', '艺术价值']
-    zhao_vals = [5, 5, 5, 4, 5]
-    gard_vals = [3, 4, 3, 5, 4]
-
-    labels = np.array(radar_labels)
-    num_vars = len(labels)
-    angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()
-    angles += angles[:1]
-
-    zhao_vals_plot = zhao_vals + zhao_vals[:1]
-    gard_vals_plot = gard_vals + gard_vals[:1]
-
-    fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
-    ax.set_theta_offset(np.pi / 2)
-    ax.set_theta_direction(-1)
-
-    # 正常显示中文标签
-    plt.xticks(angles[:-1], labels, color='grey', size=10)
-    ax.set_rlabel_position(30)
-    ax.plot(angles, zhao_vals_plot, 'o-', linewidth=2, label='赵州桥', color='#8B4513')
-    ax.fill(angles, zhao_vals_plot, alpha=0.25, color='#8B4513')
-    ax.plot(angles, gard_vals_plot, 'o-', linewidth=2, label='加尔桥', color='#2F4F4F')
-    ax.fill(angles, gard_vals_plot, alpha=0.25, color='#2F4F4F')
-    ax.set_ylim(0, 5)
-    plt.legend(loc='upper right', bbox_to_anchor=(0.1, 0.1))
-
-    st.pyplot(fig)
-    # ---------------------------------------------------
+    st.subheader("文化影响力对比雷达图")
+    st.image("radar_chart.png", use_container_width=True)
 
     st.caption("评分基于民间传说、教材/欧元纸币传播、民族自豪感、国际遗产认定等维度综合估算，仅作相对示意。")
     st.markdown("**赵州桥**：鲁班传说、小学课文、民族骄傲；**加尔桥**：欧元纸币、UNESCO杰作、欧洲文旅地标。")
